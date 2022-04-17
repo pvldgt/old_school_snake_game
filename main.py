@@ -13,6 +13,7 @@ screen.title("Old School Snake Game")
 screen.tracer(0)
 
 snake = Snake()
+# start listening for key presses that set the snake heading
 screen.listen()
 screen.onkey(snake.up, "Up")
 screen.onkey(snake.down, "Down")
