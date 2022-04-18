@@ -34,6 +34,8 @@ while game_is_on:
     # function that moves the snake segments, last to second to last etc
     snake.move()
 
+    if snake.head.distance(food) < 15:
+        food.refresh()
 
 
 screen.exitonclick()
