@@ -1,6 +1,7 @@
 from turtle import Turtle
 ALIGNMENT = "center"
 FONT = ("Courier New", 15, "bold")
+GAME_OVER_FONT = ("Courier New", 40, "bold")
 
 class Scoreboard(Turtle):
     # initialize scoreboard object
@@ -25,6 +26,9 @@ class Scoreboard(Turtle):
     # display the game over message
     def game_over(self):
         self.goto(0, 0)
-        self.write("GAME OVER", align=ALIGNMENT, font=FONT)
+        self.color("red")
+        self.write(f"GAME OVER", align=ALIGNMENT, font=GAME_OVER_FONT)
+        self.goto(0, -45)
+        self.write(f"Final score is {self.counter}", align=ALIGNMENT, font=GAME_OVER_FONT)
 
 
