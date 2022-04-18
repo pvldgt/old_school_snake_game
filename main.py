@@ -9,6 +9,8 @@ screen = Screen()
 screen.setup(width=600, height=600)
 screen.bgcolor("black")
 screen.title("Old School Snake Game")
+# ask user for difficulty
+difficulty = screen.numinput("DIFFICULTY LEVEL", "1 for difficult, 2 for easy: ")
 # turn off tracer so that we can update the screen manually when we want it
 # this is needed to avoid each snake segment from scurrying along
 # instead it will move smoothly
@@ -31,8 +33,12 @@ game_is_on = True
 while game_is_on:
     # since the tracer is off now we need to update the screen manually
     screen.update()
-    # adding a 0.1 sec delay between each screen update to imitate the snake moving
-    time.sleep(0.2)
+    # adding a delay between each screen update to imitate the snake moving
+    # this is based on the difficulty chosen by user
+    if difficulty == 2:
+        time.sleep(0.2)
+    elif difficulty == 1:
+        time.sleep(0.1)
     # function that moves the snake segments, last to second to last etc
     snake.move()
 
@@ -49,7 +55,7 @@ while game_is_on:
 
     # detect collision with tail
     # if head collides with any segment of the snake then trigger game over sequence
-    for seg in snake.segments[2:]:
+    for seg in snake.segments[1:]:
         if snake.head.distance(seg) < 5:
             game_is_on = False
             scoreboard.game_over()
