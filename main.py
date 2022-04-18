@@ -32,7 +32,7 @@ while game_is_on:
     # since the tracer is off now we need to update the screen manually
     screen.update()
     # adding a 0.1 sec delay between each screen update to imitate the snake moving
-    time.sleep(0.1)
+    time.sleep(0.2)
     # function that moves the snake segments, last to second to last etc
     snake.move()
 
@@ -43,10 +43,16 @@ while game_is_on:
         scoreboard.refresh_counter()
 
     # detect collision with wall
-    if snake.head.xcor() > 280 or snake.head.xcor() < -280 or snake.head.ycor() > 280 or snake.head.ycor() < -280:
+    if snake.head.xcor() > 295 or snake.head.xcor() < -295 or snake.head.ycor() > 295 or snake.head.ycor() < -295:
         game_is_on = False
         scoreboard.game_over()
 
+    # detect collision with tail
+    # if head collides with any segment of the snake then trigger game over sequence
+    for seg in snake.segments[2:]:
+        if snake.head.distance(seg) < 5:
+            game_is_on = False
+            scoreboard.game_over()
 
 
 
