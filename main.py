@@ -1,5 +1,6 @@
 from turtle import Screen
 from food import Food
+from scoreboard import Scoreboard
 import time
 from snake import Snake
 
@@ -15,6 +16,7 @@ screen.tracer(0)
 
 snake = Snake()
 food = Food()
+scoreboard = Scoreboard()
 
 # start listening for key presses that set the snake heading
 screen.listen()
@@ -36,6 +38,9 @@ while game_is_on:
 
     if snake.head.distance(food) < 18:
         food.refresh()
+        scoreboard.refresh_counter()
+
+
 
 
 screen.exitonclick()
