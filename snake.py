@@ -26,12 +26,12 @@ class Snake:
 
     def move(self):
         for seg_num in range(len(self.segments) - 1, 0, -1):
-            # create coordinates of the second to last segment
+            # coordinates of the previous segment,
+            # so that 2nd seg can move to the 1st and the 1st to the 0th
             new_x = self.segments[seg_num - 1].xcor()
             new_y = self.segments[seg_num - 1].ycor()
             self.segments[seg_num].goto(new_x, new_y)
-        # and then move the very first element that will drag the rest of the elements
-        # on the next iteration
+        # and then finally move the very first element
         self.head.forward(MOVE_DISTANCE)
 
     def up(self):
