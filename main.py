@@ -1,4 +1,5 @@
-from turtle import Screen, Turtle
+from turtle import Screen
+from food import Food
 import time
 from snake import Snake
 
@@ -13,6 +14,8 @@ screen.title("Old School Snake Game")
 screen.tracer(0)
 
 snake = Snake()
+food = Food()
+
 # start listening for key presses that set the snake heading
 screen.listen()
 screen.onkey(snake.up, "Up")
