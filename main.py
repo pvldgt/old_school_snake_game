@@ -1,6 +1,7 @@
 from turtle import Screen
 from food import Food
 from scoreboard import Scoreboard
+from wall import Wall
 import time
 from snake import Snake
 
@@ -10,7 +11,7 @@ screen.setup(width=600, height=600)
 screen.bgcolor("black")
 screen.title("Old School Snake Game")
 # ask user for difficulty
-difficulty = screen.numinput("DIFFICULTY LEVEL", "1 for difficult, 2 for easy: ")
+difficulty = screen.numinput("DIFFICULTY LEVEL", "1 for easy, 2 for difficult, 3 for hardcore: ")
 # turn off tracer so that we can update the screen manually when we want it
 # this is needed to avoid each snake segment from scurrying along
 # instead it will move smoothly
@@ -18,6 +19,7 @@ screen.tracer(0)
 
 snake = Snake()
 food = Food()
+wall = Wall()
 scoreboard = Scoreboard()
 
 # start listening for key presses that set the snake heading
@@ -35,9 +37,12 @@ while game_is_on:
     screen.update()
     # adding a delay between each screen update to imitate the snake moving
     # this is based on the difficulty chosen by user
-    if difficulty == 2:
+    if difficulty == 1:
         time.sleep(0.2)
-    elif difficulty == 1:
+    elif difficulty == 2:
+        time.sleep(0.1)
+    elif difficulty == 3:
+        wall.create_wall()
         time.sleep(0.1)
     # function that moves the snake segments, last to second to last etc
     snake.move()
@@ -48,7 +53,14 @@ while game_is_on:
         snake.extend()
         scoreboard.refresh_counter()
 
-    # detect collision with wall, if snake head goes over the limit then appear from the other side of the screen
+    # detect collision with wall
+    for wall_seg in wall.wall_segments:
+        if snake.head.distance(wall_seg) < 10:
+            game_is_on = False
+            scoreboard.game_over()
+
+    # detect collision with wall, if snake head goes over the limit
+    # then appear from the other side of the screen
     if snake.head.xcor() > 290:
         snake.head.goto(-290, snake.head.ycor())
     elif snake.head.xcor() < -290:
@@ -64,6 +76,5 @@ while game_is_on:
         if snake.head.distance(seg) < 5:
             game_is_on = False
             scoreboard.game_over()
-
 
 screen.exitonclick()
