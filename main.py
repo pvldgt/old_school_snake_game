@@ -42,10 +42,13 @@ while game_is_on:
     elif difficulty == 2:
         time.sleep(0.1)
     elif difficulty == 3:
-        wall.create_wall()
         time.sleep(0.1)
+        wall.create_wall()
+
     # function that moves the snake segments, last to second to last etc
     snake.move()
+
+
 
     # detect collision with food
     if snake.head.distance(food) < 18:
@@ -55,9 +58,14 @@ while game_is_on:
 
     # detect collision with wall
     for wall_seg in wall.wall_segments:
-        if snake.head.distance(wall_seg) < 10:
+        if snake.head.distance(wall_seg) < 20:
             game_is_on = False
             scoreboard.game_over()
+
+    # if food gets too close to walls, refresh food
+    for wall_seg in wall.wall_segments:
+        if wall_seg.distance(food) < 40:
+            food.refresh()
 
     # detect collision with wall, if snake head goes over the limit
     # then appear from the other side of the screen
