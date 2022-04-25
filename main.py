@@ -2,8 +2,8 @@ from turtle import Screen
 from food import Food
 from scoreboard import Scoreboard
 from wall import Wall
-import time
 from snake import Snake
+import time
 
 # set up the screen background
 screen = Screen()
@@ -29,7 +29,6 @@ screen.onkey(snake.down, "Down")
 screen.onkey(snake.left, "Left")
 screen.onkey(snake.right, "Right")
 
-
 # a while loop to make the initial segments move along
 game_is_on = True
 while game_is_on:
@@ -48,8 +47,6 @@ while game_is_on:
     # function that moves the snake segments, last to second to last etc
     snake.move()
 
-
-
     # detect collision with food
     if snake.head.distance(food) < 18:
         food.refresh()
@@ -59,8 +56,10 @@ while game_is_on:
     # detect collision with wall
     for wall_seg in wall.wall_segments:
         if snake.head.distance(wall_seg) < 20:
-            game_is_on = False
-            scoreboard.game_over()
+            # game_is_on = False
+            # scoreboard.game_over()
+            scoreboard.reset()
+            snake.reset()
 
     # if food gets too close to walls, refresh food
     for wall_seg in wall.wall_segments:
@@ -82,7 +81,9 @@ while game_is_on:
     # if head collides with any segment of the snake then trigger game over sequence
     for seg in snake.segments[1:]:
         if snake.head.distance(seg) < 5:
-            game_is_on = False
-            scoreboard.game_over()
+            # game_is_on = False
+            # scoreboard.game_over()
+            scoreboard.reset()
+            snake.reset()
 
 screen.exitonclick()

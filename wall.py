@@ -1,10 +1,6 @@
 from turtle import Turtle
 import random
 
-# create a 5 wall based on 5 segments / (a random amount of segments)
-# make sure food doesn't get anywhere near
-
-# set up the starting positions
 # when counter reaches 15, add a wall
 
 random_x = random.randint(-250, 250)
@@ -22,7 +18,6 @@ class Wall():
         # a for loop to create the walls blocks at random positions
         for position in WALL_POSITIONS:
             self.add_wall_segment(position)
-
 
     def add_wall_segment(self, position):
         new_segment = Turtle("square")
