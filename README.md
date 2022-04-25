@@ -1,6 +1,6 @@
 # old_school_snake_game
 
-This project is build based upon a lesson in the "100 days of code" course on Udemy
+This project is built based upon a lesson in the "100 days of code" course on Udemy
 https://www.udemy.com/course/100-days-of-code/learn/lecture/20356587#overvie
 
 However, the lesson only provides some basics.
